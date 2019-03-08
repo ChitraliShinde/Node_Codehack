@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<!-- Header -->
+<% include public_header.ejs%>
+<!-- /Header -->
+
+<!-- Hero-area -->
+<div class="hero-area section">
+
+    <!-- Backgound Image -->
+    <div class="bg-image bg-parallax overlay" style="background-image:url(../front_end/img/bg2.gif)"></div>
+    <!-- /Backgound Image -->
+
+    <div class="container">
+        <div class="row">
+            <div class="col-md-10 col-md-offset-1 text-center">
+                <ul class="hero-area-tree">
+                    <li><a href="/home">Home</a></li>
+                    <li>Contact</li>
+                </ul>
+                <h1 class="white-text">Get In Touch</h1>
+            </div>
+        </div>
+    </div>
+
+</div>
+<!-- /Hero-area -->
+
+<!-- Contact -->
+<div id="contact" class="section">
+
+    <!-- container -->
+    <div class="container">
+
+        <!-- row -->
+        <div class="row">
+
+            <!-- contact form -->
+
+            <div class="col-md-6">
+                <div class="contact-form">
+                    <h4>Send A Message</h4>
+
+                    <div class="row">
+                        <div class='col-lg-6 col-lg-offset-3'>
+                            <div class="alert alert-dismissible">
+
+                                <% if(messages.success){%>
+                                    <div class="alert alerts alert-success alert-dismissible" role="alert">
+                                        <span><%= messages.success%></span>
+                                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                            <span aria-hidden="true">&times;</span>
+                                        </button>
+                                    </div>
+                                <% }%>
+
+                                <% if(messages.error){%>
+                                    <div class="alert alerts alert-danger alert-dismissible" role="alert">
+                                        <span><%= messages.error%></span>
+                                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                            <span aria-hidden="true">&times;</span>
+                                        </button>
+                                    </div>
+                                <% }%>
+
+                            </div>
+                        </div>
+                    </div>
+
+
+                    <form action="/contact/sendmail" method="post" id="sendmail">
+
+                        <label for="name">Name</label>
+                        <input class="input" type="text" name="name" placeholder="Name" title="Please Enter Your Name" autocomplete="off" required>
+                        <label for="contact">Contact Number</label>
+                        <input class="input" type="number" name="contact" placeholder="Contact Number" maxlength="10" title="Please Enter Your Contact Number" autocomplete="off" required>
+                        <label for="email">Email</label>
+                        <input class="input" type="email" name="email" placeholder="abc@gmail.com" title="Please Enter Your Email Address" autocomplete="off" required>
+                        <label for="message">Message</label>
+                        <textarea class="input" id="message" name="message" placeholder="Enter your Message" title="Please Enter Your Message" required></textarea>
+                        <input type="submit" class="main-button icon-button pull-right" name="sendmail" value="Send Mail">
+                        <input type="reset" class="main-button icon-button pull-right" name="reset" value="Reset">
+                    </form>
+                </div>
+            </div>
+
+            <!--<span id = "status" hidden></span>-->
+            <!--Ajax-->
+
+            <script>
+                $(document).ready(function(){
+                    $('#sendmail').on('submit', function(event){
+                        event.preventDefault();
+                        var formData = $(this).serialize();
+                        $.ajax({
+                            url: "http://localhost:3000/contact/sendmail",
+                            method: "POST",
+                            data: formData,
+                            success:function(response) {
+                                if(!response.error) {
+                                    $('#name').reset();
+                                    $('#sendmail').resetForm();
+                                    $('#message').html(response.message);
+                                } else if(response.error){
+                                    $('#message').html(response.message);
+                                }
+                            }
+                        })
+                    });
+                });
+
+                /*
+                $(function() {
+
+                    // Get the form.
+                    var form = $('#sendmail');
+
+                    // Get the messages div.
+                    var formMessages = $('#message');
+
+                    // Set up an event listener for the contact form.
+                    $(form).submit(function(e) {
+                        // Stop the browser from submitting the form.
+                        e.preventDefault();
+
+                        // Serialize the form data.
+                        var formData = $(form).serialize();
+
+                        // Submit the form using AJAX.
+                        $.ajax({
+                            type: 'POST',
+                            url: $(form).attr('action'),
+                            data: formData
+                        })
+                            .done(function(response) {
+                                // Make sure that the formMessages div has the 'success' class.
+                                $(formMessages).removeClass('error');
+                                $(formMessages).addClass('success');
+
+                                // Set the message text.
+                                $(formMessages).text(response);
+
+                                // Clear the form.
+                                // document.getElementById('sendmail').value = '';
+                                document.getElementById("sendmail").reset();
+                                $('#name').val('');
+                                $('#contact').val('');
+                                $('#email').val('');
+                                $('#message').val('');
+                            })
+                            .fail(function(data) {
+                                // Make sure that the formMessages div has the 'error' class.
+                                $(formMessages).removeClass('success');
+                                $(formMessages).addClass('error');
+
+                                // Set the message text.
+                                if (data.responseText !== '') {
+                                    $(formMessages).text(data.responseText);
+                                } else {
+                                    $(formMessages).text('Oops! An error occured and your message could not be sent.');
+                                }
+                            });
+                    });
+                });
+                */
+
+            </script>
+
+            <!--Ajax-->
+
+            <!-- /contact form -->
+
+            <!-- contact information -->
+            <div class="col-md-5 col-md-offset-1">
+                <h4>Contact Information</h4>
+                <ul class="contact-details">
+                    <li><i class="fa fa-envelope"></i>codehack@gmail.com</li>
+                    <li><i class="fa fa-phone"></i>123-456-789-10</li>
+                    <!--<li><i class="fa fa-map-marker"></i>4476 Clement Street</li>-->
+                </ul>
+
+                <!-- contact map -->
+
+                <!-- /contact map -->
+
+            </div>
+            <!-- contact information -->
+
+        </div>
+        <!-- /row -->
+
+    </div>
+    <!-- /container -->
+
+</div>
+<!-- /Contact -->
+
+<!-- Footer -->
+<% include public_footer.ejs%>
+<!-- /Footer -->
+
+</body>
+</html>

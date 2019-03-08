@@ -1,0 +1,103 @@
+<!doctype html>
+<html class="no-js" lang="en">
+
+    <% include header.ejs%>
+
+<body>
+<!--[if lt IE 8]>
+<p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
+<![endif]-->
+
+<% if(messages.success){%>
+    <div class="alert alerts alert-success alert-dismissible pull-right" role="alert">
+        <span><%= messages.success%></span>
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+<% }%>
+
+<% if(messages.error){%>
+    <div class="alert alerts alert-success alert-dismissible pull-right" role="alert">
+        <span><%= messages.error%></span>
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+<% }%>
+
+<div class="login-bg" id="login">
+    <div class="error-pagewrap">
+        <div class="error-page-int">
+            <div class="text-center m-b-md custom-login login-head">
+                <h1>REGISTRATION</h1>
+            </div>
+            <div class="content-error">
+                <div class="hpanel">
+                    <div class="panel-body">
+
+                        <form action="/back-office/Node-Admin-Registration/register" method="post" id="loginForm">
+                            <div class="row">
+                                <div class="form-group">
+                                    <label class="control-label" for="username">Username</label>
+                                    <input type="text" name="username" id="username" placeholder="Username" title="Please Enter Your Username" value="" autocomplete="off" class="form-control" required>
+                                </div>
+                                <div class="form-group">
+                                    <label class="control-label" for="username">Email Address</label>
+                                    <input type="email" name="email" id="email" placeholder="Username" title="Please Enter Your Email ID" value="" autocomplete="off" class="form-control" required>
+                                </div>
+                                <div class="form-group">
+                                    <label class="control-label" for="password">Password</label>
+                                    <br>
+                                    <sub for="password">Password must contain Number, Uppercase, Lowercase Letter, and 8 or more Characters.
+                                    </sub>
+                                    <input type="password" name="password" id="password" title="Please Enter Your Password" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" placeholder="******" value="" class="form-control" required>
+                                </div>
+                                <div class="form-group">
+                                    <label class="control-label" for="password">Confirm Password</label>
+                                    <input type="password" name="confirm_password" id="confirm_password" title="Please Enter Your Password Again" placeholder="******" value="" class="form-control" required>
+                                </div>
+
+                                <script>
+                                    var password = document.getElementById("password")
+                                        , confirm_password = document.getElementById("confirm_password");
+
+                                    function validatePassword(){
+                                        if(password.value != confirm_password.value) {
+                                            confirm_password.setCustomValidity("Passwords Don't Match");
+                                        } else {
+                                            confirm_password.setCustomValidity('');
+                                        }
+                                    }
+
+                                    password.onchange = validatePassword;
+                                    confirm_password.onkeyup = validatePassword;
+                                </script>
+
+                                <input type="checkbox" value="" required>
+                                <label for="check" style="color: #ff7117"><span></span>I Agree To The Terms</label>
+
+                                <button type="submit" class="btn btn-success btn-block loginbtn">Register</button>
+                                <button type="reset" class="btn btn-success btn-block loginbtn">Reset</button>
+
+                                <br>
+                                <label for="">Already Have an Account?</label>
+                                <br>
+
+                                <a href="/back-office/Node-Admin-Login/login" class="btn btn-success btn-block loginbtn">Login Here</a>
+
+                            </div>
+
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<% include admin_footer.ejs%>
+
+</body>
+
+</html>

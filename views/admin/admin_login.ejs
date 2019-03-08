@@ -1,0 +1,83 @@
+<!doctype html>
+<html class="no-js" lang="en">
+
+<% include header.ejs%>
+
+<body>
+<!--[if lt IE 8]>
+<p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
+<![endif]-->
+
+
+<div class="login-bg" id="login">
+	<div class="error-pagewrap">
+		<div class="error-page-int">
+			<div class="row">
+					<% if(messages.success){%>
+						<div class="alert alerts alert-success alert-dismissible" role="alert">
+							<span><%= messages.success%></span>
+							<button type="button" class="close" data-dismiss="alert" aria-label="Close">
+								<span aria-hidden="true">&times;</span>
+							</button>
+						</div>
+					<% }%>
+
+					<% if(messages.error){%>
+						<div style="background: #f2dede; color: #a94442; border-color: #ebccd1">
+						<div class="alert alerts alert-error alert-dismissible" role="alert">
+							<span><%= messages.error%></span>
+							<button type="button" class="close" data-dismiss="alert" aria-label="Close">
+								<span aria-hidden="true">&times;</span>
+							</button>
+						</div>
+						</div>
+					<% }%>
+			</div>
+			<div class="text-center m-b-md custom-login login-head">
+				<h1>LOGIN</h1>
+			</div>
+			<div class="content-error">
+				<div class="hpanel">
+					<div class="panel-body">
+
+						<form action="/back-office/Node-Admin-Check/checklogin" method="post" id="loginForm">
+
+							<div class="form-group">
+								<label class="control-label" for="username">Username</label>
+								<input type="text" name="username" id="username" placeholder="Username" title="Please Enter Your Username" required="" value="" autocomplete="off" class="form-control">
+							</div>
+							<div class="form-group">
+								<label class="control-label" for="password">Password</label>
+								<input type="password" name="password" id="password" title="Please Enter Your Password" placeholder="******" required="" value="" class="form-control">
+							</div>
+							<div class="checkbox login-checkbox">
+								<input type="checkbox" value="">
+								<label for="check"style="color: #ff7117"><span></span>Remember Me</label>
+							</div>
+							<button type="submit" class="btn btn-success btn-block loginbtn">Login</button>
+
+
+							<!--<br>-->
+							<!--<label for="">Not a Member???</label>-->
+							<!--<a href="/back-office/Node-Admin-Registration/registration" class="btn btn-success btn-block loginbtn">Register Here</a>-->
+
+							<!--<label>OR Login With</label>-->
+							<!--<div id="social_login">-->
+								<!--<a href="/login/facebook" class="fa fa-facebook" style="background: #3B5998;"></a>-->
+								<!--<a href="/auth/google" class="fa fa-google" style="background: #dd4b39;"></a>-->
+								<!--<a href="/auth/github" class="fa fa-github" style="background: #000000;"></a>-->
+							<!--</div>-->
+
+						</form>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+
+<% include admin_footer.ejs%>
+
+</body>
+
+</html>

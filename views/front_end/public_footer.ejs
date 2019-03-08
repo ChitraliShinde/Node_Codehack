@@ -1,0 +1,107 @@
+<!-- Footer -->
+<footer id="footer" class="section white-text" style="background: #000000">
+
+    <!-- container -->
+    <div class="container">
+
+        <!-- Backgound Image -->
+        <!--<div class="bg-image bg-parallax overlay" style="background-image:url(/front_end/img/cta2-background.jpg)"></div>-->
+        <div class="bg-image bg-parallax overlay" style="background-image:url(/front_end/img/bg2.gif)"></div>
+        <!-- Backgound Image -->
+
+        <!-- row -->
+        <div class="row">
+
+            <!-- footer logo -->
+            <div class="col-md-6">
+                <div class="footer-logo">
+                    <a class="logo" href="/home">
+                        <h2 class="white-text">CodeHack</h2>
+                        <!--<img src="/front_end/img/logo-alt.png" alt="logo">-->
+                    </a>
+                </div>
+            </div>
+            <!-- footer logo -->
+
+            <!-- footer nav -->
+            <div class="col-md-6">
+                <ul class="footer-nav white-text">
+                    <li><a href="/home">Home</a></li>
+                    <li><a href="/about">About</a></li>
+                    <li><a href="/blog">Blog</a></li>
+                    <li><a href="/contact">Contact</a></li>
+                </ul>
+            </div>
+            <!-- /footer nav -->
+
+        </div>
+        <!-- /row -->
+
+        <!-- row -->
+        <div id="bottom-footer" class="row">
+
+            <!-- social -->
+            <div class="col-md-4 col-md-push-8">
+                <ul class="footer-social">
+                    <li><a href="https://www.facebook.com/" class="facebook"><i class="fa fa-facebook"></i></a></li>
+                    <li><a href="https://twitter.com/" class="twitter"><i class="fa fa-twitter"></i></a></li>
+                    <li><a href="https://plus.google.com/" class="google-plus"><i class="fa fa-google-plus"></i></a></li>
+                    <li><a href="https://www.youtube.com/" class="youtube"><i class="fa fa-youtube"></i></a></li>
+                    <li><a href="https://www.linkedin.com/" class="linkedin"><i class="fa fa-linkedin"></i></a></li>
+                </ul>
+            </div>
+            <!-- /social -->
+
+            <!-- copyright -->
+            <div class="col-md-8 col-md-pull-4">
+                <div class="footer-copyright">
+                    <span>&copy; Copyright <%=(new Date()).getFullYear() %> | All Rights Reserved.<i class="fa fa-heart-o" aria-hidden="true"></i></span>
+                </div>
+            </div>
+            <!-- /copyright -->
+
+        </div>
+        <!-- row -->
+
+    </div>
+    <!-- /container -->
+
+</footer>
+<!-- /Footer -->
+
+<!-- preloader -->
+<div id='preloader'><div class='preloader'></div></div>
+<!-- /preloader -->
+
+
+<!--pagination-->
+<link type="text/css" rel="stylesheet" href="/front_end/pagination/css/pagination.css"/>
+
+<script type="text/javascript" src="/front_end/pagination/js/highlight.pack.js"></script>
+<script type="text/javascript" src="/front_end/pagination/js/tabifier.js"></script>
+<script src="/front_end/pagination/js/jPages.js"></script>
+
+<script>
+    /* when document is ready */
+    $(function() {
+
+        /* initiate plugin */
+        $("div.holder").jPages({
+            containerID : "itemContainer",
+            perPage : 4
+        });
+
+        /* on select change */
+        $("select").change(function(){
+            /* get new nº of items per page */
+            var newPerPage = parseInt( $(this).val() );
+
+            /* destroy jPages and initiate plugin again */
+            $("div.holder").jPages("destroy").jPages({
+                containerID   : "itemContainer",
+                perPage       : newPerPage
+            });
+        });
+
+    });
+</script>

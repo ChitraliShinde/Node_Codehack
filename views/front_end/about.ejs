@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<!-- Header -->
+<% include public_header.ejs%>
+<!-- /Header -->
+
+<!-- Hero-area -->
+<div class="hero-area section">
+
+    <!-- Backgound Image -->
+    <div class="bg-image bg-parallax overlay" style="background-image:url(../front_end/img/bg2.gif)"></div>
+    <!-- /Backgound Image -->
+
+    <div class="container">
+        <div class="row">
+            <div class="col-md-10 col-md-offset-1 text-center">
+                <h1 class="white-text">About Us</h1>
+            </div>
+        </div>
+    </div>
+
+</div>
+<!-- /Hero-area -->
+
+
+<!-- About -->
+<div id="contact" class="section">
+    <!-- Backgound Image -->
+    <div class="bg-image bg-parallax" id="bg-about-main"></div>
+    <!-- /Backgound Image -->
+    <div class="container">
+        <div class="row" style="color: black;">
+            <div class="col-md-12">
+                <h1 class="text-center" style="color: black">CodeHack</h1>
+            </div>
+
+            <div class="text-center lead">
+                <q><i><%=data[0].aboutQuote%></i></q>
+                <hr>
+            </div>
+
+            <div class="container section">
+                <div class="col-md-6">
+                    <% if(data[0].aboutImg){ %>
+                        <img src="../assets/img/<%= data[0].aboutImg %>" alt="Image" class="img-responsive">
+                    <%  } %>
+
+                </div>
+
+                <br>
+
+                <div class="col-md-offset-1 col-md-5 text-justify">
+                    <p class="lead"><%=data[0].aboutContent%></p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- /About -->
+
+<!-- Footer -->
+<% include public_footer.ejs%>
+<!-- /Footer -->
+
+</body>
+</html>
